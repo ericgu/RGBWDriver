@@ -1,0 +1,165 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 3 5
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text Label 5000 3850 0    50   ~ 0
+SW1
+Text Label 4750 3600 0    50   ~ 0
+Dim1
+Wire Wire Line
+	4700 3400 5100 3400
+Connection ~ 5100 3300
+Wire Wire Line
+	5000 3850 5950 3850
+Wire Wire Line
+	5000 3300 5000 3850
+Wire Wire Line
+	5100 3300 5000 3300
+Connection ~ 6100 3100
+Connection ~ 4700 3100
+Wire Wire Line
+	6100 2750 6100 3100
+Wire Wire Line
+	4700 2750 6100 2750
+Wire Wire Line
+	4700 3100 4700 2750
+Wire Wire Line
+	5100 3100 5400 3100
+Wire Wire Line
+	5100 3300 5100 3100
+Wire Wire Line
+	5700 3100 6100 3100
+Text Label 4700 3400 0    50   ~ 0
+Gnd
+Text Label 4700 3100 0    50   ~ 0
+Vin
+Connection ~ 4700 3400
+Connection ~ 6100 3250
+Wire Wire Line
+	6100 3100 6100 3250
+Connection ~ 6300 3550
+Wire Wire Line
+	6300 3550 6300 3750
+Wire Wire Line
+	6100 3550 6300 3550
+Wire Wire Line
+	6100 3500 6100 3550
+Wire Wire Line
+	6100 3250 6300 3250
+Wire Wire Line
+	6100 3300 6100 3250
+$Comp
+L Device:C C1
+U 1 1 5F40AB72
+P 4700 3250
+AR Path="/5F4096D0/5F40AB72" Ref="C1"  Part="1" 
+AR Path="/5F462411/5F40AB72" Ref="C2"  Part="1" 
+AR Path="/5F462735/5F40AB72" Ref="C3"  Part="1" 
+AR Path="/5F462A47/5F40AB72" Ref="C4"  Part="1" 
+F 0 "C2" H 4815 3296 50  0000 L CNN
+F 1 "33uF" H 4815 3205 50  0000 L CNN
+F 2 "Capacitors_SMD:C_1210" H 4738 3100 50  0001 C CNN
+F 3 "~" H 4700 3250 50  0001 C CNN
+F 4 "C308920" H 4700 3250 50  0001 C CNN "LCSC"
+	1    4700 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 5F40AB79
+P 6300 3400
+AR Path="/5F4096D0/5F40AB79" Ref="R1"  Part="1" 
+AR Path="/5F462411/5F40AB79" Ref="R2"  Part="1" 
+AR Path="/5F462735/5F40AB79" Ref="R3"  Part="1" 
+AR Path="/5F462A47/5F40AB79" Ref="R4"  Part="1" 
+F 0 "R2" H 6370 3446 50  0000 L CNN
+F 1 "0.2" H 6370 3355 50  0000 L CNN
+F 2 "Resistors_SMD:R_1206" V 6230 3400 50  0001 C CNN
+F 3 "~" H 6300 3400 50  0001 C CNN
+F 4 "C25335" H 6300 3400 50  0001 C CNN "LCSC"
+	1    6300 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:L L1
+U 1 1 5F40AB80
+P 6100 3850
+AR Path="/5F4096D0/5F40AB80" Ref="L1"  Part="1" 
+AR Path="/5F462411/5F40AB80" Ref="L2"  Part="1" 
+AR Path="/5F462735/5F40AB80" Ref="L3"  Part="1" 
+AR Path="/5F462A47/5F40AB80" Ref="L4"  Part="1" 
+F 0 "L2" V 5919 3850 50  0000 C CNN
+F 1 "47mH" V 6010 3850 50  0000 C CNN
+F 2 "Inductors_SMD:L_12x12mm_h6mm" H 6100 3850 50  0001 C CNN
+F 3 "~" H 6100 3850 50  0001 C CNN
+F 4 "C169398" V 6100 3850 50  0001 C CNN "LCSC"
+	1    6100 3850
+	0    1    1    0   
+$EndComp
+$Comp
+L Diode:1N5819 D1
+U 1 1 5F40AB87
+P 5550 3100
+AR Path="/5F4096D0/5F40AB87" Ref="D1"  Part="1" 
+AR Path="/5F462411/5F40AB87" Ref="D2"  Part="1" 
+AR Path="/5F462735/5F40AB87" Ref="D3"  Part="1" 
+AR Path="/5F462A47/5F40AB87" Ref="D4"  Part="1" 
+F 0 "D2" H 5550 2883 50  0000 C CNN
+F 1 "1N5819" H 5550 2974 50  0000 C CNN
+F 2 "Diodes_SMD:D_SOD-123" H 5550 2925 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/88525/1n5817.pdf" H 5550 3100 50  0001 C CNN
+F 4 "C369930" H 5550 3100 50  0001 C CNN "LCSC"
+	1    5550 3100
+	-1   0    0    1   
+$EndComp
+$Comp
+L RGBW-Driver-rescue:PT4115-PT4115 U?
+U 1 1 5F40AB8E
+P 5600 3400
+AR Path="/5F40AB8E" Ref="U?"  Part="1" 
+AR Path="/5F4096D0/5F40AB8E" Ref="U1"  Part="1" 
+AR Path="/5F462411/5F40AB8E" Ref="U2"  Part="1" 
+AR Path="/5F462735/5F40AB8E" Ref="U3"  Part="1" 
+AR Path="/5F462A47/5F40AB8E" Ref="U4"  Part="1" 
+F 0 "U2" H 5600 3400 50  0001 L BNN
+F 1 "PT4115" H 5600 3400 50  0001 L BNN
+F 2 "TO_SOT_Packages_SMD:SOT-89-5_Housing" H 5600 3400 50  0001 L BNN
+F 3 "" H 5600 3400 50  0001 C CNN
+F 4 "C15425" H 5600 3400 50  0001 C CNN "LCSC"
+	1    5600 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5100 3600 5100 3500
+Wire Wire Line
+	6300 3750 6800 3750
+Wire Wire Line
+	6250 3850 6800 3850
+Wire Wire Line
+	3800 3600 5100 3600
+Wire Wire Line
+	4400 3400 4700 3400
+Wire Wire Line
+	4400 3100 4700 3100
+Text HLabel 4400 3100 0    50   Input ~ 0
+Vin
+Text HLabel 4400 3400 0    50   Input ~ 0
+GND
+Text HLabel 3800 3600 0    50   Input ~ 0
+Dim
+Text HLabel 6800 3750 2    50   Input ~ 0
+LED+
+Text HLabel 6800 3850 2    50   Input ~ 0
+LED-
+$EndSCHEMATC
