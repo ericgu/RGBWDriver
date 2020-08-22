@@ -11,21 +11,21 @@
     How to use this is explained in eeschema.pdf chapter 14.  You enter a command line into the
     netlist exporter using a new (custom) tab in the netlist export dialog.
     The command line is
-        xsltproc -o "%O.csv" "FullPathToFile/bom2grouped_csv_jlcpcb.xsl" "%I"
+        xsltproc -o "%O.csv" "full_path/bom2grouped_csv_jlcpcb.xsl" "%I"
 -->
 <!--
     @package
-    Generates a JLCPCB PCBA service compatible BOM
-
-	Functionality:
-    * Generate a comma separated value BOM list (csv file type).
-    * Components are sorted by ref and grouped by same value+footprint
-    One value per line
-    Fields are
+Generates a JLCPCB PCBA service compatible BOM
+    
+Functionality:
+  * Generate a comma separated value BOM list (csv file type).
+  * Components are sorted by ref and grouped by same value+footprint
+  * One value per line
+  * Fields are:
     Comment,Designator,Footprint,LCSC
 
-    The command line is
-        xsltproc -o "%O.csv" "full_path/bom2grouped_csv_jlcpcb.xsl" "%I"
+  Usage:
+    xsltproc -o "%O.csv" "full_path/bom2grouped_csv_jlcpcb.xsl" "%I"
 -->
 
 
@@ -48,6 +48,13 @@
 	    <!-- main part -->
 	<xsl:template match="/export">
 	    <xsl:text>Comment,Designator,Footprint,LCSC</xsl:text>
+
+	    <!-- find all existing table head entries and list each one once -->
+	    <xsl:for-each select="components/comp/fields/field[generate-id(.) = generate-id(key('headentr',@name)[1])]">
+		<xsl:text>, </xsl:text>
+		<xsl:value-of select="@name"/>
+	    </xsl:for-each>
+
 	    <!-- all table entries -->
 	    <xsl:apply-templates select="components"/>
 	</xsl:template>
@@ -55,20 +62,31 @@
 	<xsl:template match="components">
 	    <!-- for Muenchian grouping of footprint and value combination -->
 	    <xsl:for-each select="comp[count(. | key('partTypeByValueAndFootprint', concat(footprint, '-', value))[1]) = 1]">
-		<xsl:sort select="@ref" />
-		<xsl:text>&nl;</xsl:text>
-		<xsl:text>"</xsl:text><xsl:value-of select="value"/><xsl:text>","</xsl:text>
-		<!-- list of all references -->
-		<xsl:for-each select="key('partTypeByValueAndFootprint', concat(footprint, '-', value))">
-			<!-- strip non-digits from reference and sort based on remaining number -->
-			<xsl:sort select="translate(@ref, translate(@ref, $digits, ''), '')" data-type="number" />
-			<xsl:value-of select="@ref"/>
-			<xsl:if test="position() != last()"><xsl:text>,</xsl:text></xsl:if>
-		</xsl:for-each>
-		<xsl:text>","</xsl:text>
-		
-		<xsl:value-of select="footprint"/><xsl:text>","</xsl:text>
-		<xsl:value-of select="fields/field[@name='LCSC']"/><xsl:text>"</xsl:text>
+          <xsl:sort select="@ref" />
+          <xsl:text>&nl;</xsl:text>
+          
+          <xsl:text>"</xsl:text>
+          <xsl:value-of select="value"/>
+          <xsl:text>","</xsl:text>
+          
+          <!-- list of all designators -->
+          <xsl:for-each select="key('partTypeByValueAndFootprint', concat(footprint, '-', value))">
+              <!-- strip non-digits from reference and sort based on remaining number -->
+              <xsl:sort select="translate(@ref, translate(@ref, digits, ''), '')" data-type="number" />
+              <xsl:value-of select="@ref"/>
+              <xsl:if test="position() != last()">
+                  <xsl:text>,</xsl:text>
+              </xsl:if>
+          </xsl:for-each>
+          <xsl:text>","</xsl:text>
+          
+          <xsl:value-of select="footprint"/>
+          <xsl:text>","</xsl:text>
+          
+          <xsl:value-of select="LCSC"/>
+          <xsl:text>"</xsl:text>
+          
+          <xsl:apply-templates select="fields"/>
 	    </xsl:for-each>
 	</xsl:template>
 

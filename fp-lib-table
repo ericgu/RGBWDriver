@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name Jumpers)(type KiCad)(uri "D:/data/Electronics/RGBW Driver/jumpers")(options "")(descr ""))
+)
